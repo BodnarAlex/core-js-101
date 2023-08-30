@@ -71,7 +71,7 @@ function getAverage(value1, value2) {
  *   (-5,0) (10,-10) => 18.027756377319946
  */
 function getDistanceBetweenPoints(x1, y1, x2, y2) {
-  return Math.hypot((x2-x1), (y2-y1));
+  return Math.hypot((x2 - x1), (y2 - y1));
 }
 
 /**
@@ -159,8 +159,7 @@ function parseNumberFromString(value) {
  *   1,2,3   => 3.741657386773941
  */
 function getParallelepipedDiagonal(a, b, c) {
-  return  Math.hypot(a, b, c);
-
+  return Math.hypot(a, b, c);
 }
 
 
@@ -182,7 +181,7 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 3  => 2000
  */
 function roundToPowerOfTen(num, pow) {
-  return Math.round(num / Math.pow(10, pow)) * Math.pow(10, pow);
+  return Math.round((num / (10 ** pow)) * (10 ** pow));
 }
 
 /**
@@ -203,13 +202,11 @@ function roundToPowerOfTen(num, pow) {
  *   17 => true
  */
 function isPrime(n) {
-  let P = Math.ceil(Math.sqrt(n));
-  
-  if(num < 2 || (num % 2 == 0 && num > 2))
-      return false;
-  for(let i = 3; i <= P; i = i + 2){
-    if(num % i == 0)
-       return false;
+  const P = Math.ceil(Math.sqrt(n));
+
+  if (n < 2 || (n % 2 === 0 && n > 2)) { return false; }
+  for (let i = 3; i <= P; i += 2) {
+    if (n % i === 0) { return false; }
   }
   return true;
 }
@@ -229,8 +226,8 @@ function isPrime(n) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(value, def ) {
-  return (typeof (Number(value)) == number) ? Number(value) : def;
+function toNumber(value, def) {
+  return Number(value) ? Number(value) : def;
 }
 
 module.exports = {
