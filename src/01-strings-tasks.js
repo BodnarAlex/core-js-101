@@ -52,7 +52,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-  return `Hello, ${firstName} ${lastName} !`;
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -127,7 +127,7 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-  return value.replace(str, '');
+  return str.replace(value, '');
 }
 
 /**
@@ -208,9 +208,9 @@ function getRectangleString(width, height) {
     if (i === 1) {
       res = `┌${'─'.repeat(width - 2)}┐\n`;
     } else if (i === height) {
-      res += `└${'─'.repeat(width - 2)}│\n`;
+      res += `└${'─'.repeat(width - 2)}┘\n`;
     } else {
-      res += `|${'─'.repeat(width - 2)}┘\n`;
+      res += `│${' '.repeat(width - 2)}│\n`;
     }
     i += 1;
   }
@@ -239,8 +239,11 @@ function encodeToRot13(str) {
   const code = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
   let res = '';
   for (let i = 0; i < str.length; i) {
-    const index = alfabet.indexOf(str[i]);
-    res += code[index];
+    let index = str[i];
+    if (alfabet.indexOf(str[i]) > -1) {
+      index = code[alfabet.indexOf(str[i])];
+    }
+    res += index;
     i += 1;
   }
   return res;
@@ -260,7 +263,7 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  return typeof value;
+  return (value instanceof String || typeof value === 'string');
 }
 
 
