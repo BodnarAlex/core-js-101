@@ -52,7 +52,7 @@ function getCircleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  return (value1 + value2) / 2;
+  return value2 / 2 + value1 / 2;
 }
 
 /**
@@ -110,7 +110,7 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (1,2)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-  return Math.atan2(y2 - y1, x2 - x1);
+  return Math.acos((x1 * x2 + y1 * y2) / (Math.hypot(x1, y1) * Math.hypot(x2, y2)));
 }
 
 /**
@@ -147,7 +147,7 @@ function parseNumberFromString(value) {
 
 /**
  * Returns a diagonal length of the rectangular parallelepiped given by its sides a,b,c.
- *
+ * Math.hypot(a, b, c); - дает число меньше...
  * @param {number} a
  * @param {number} b
  * @param {number} c
@@ -159,7 +159,7 @@ function parseNumberFromString(value) {
  *   1,2,3   => 3.741657386773941
  */
 function getParallelepipedDiagonal(a, b, c) {
-  return Math.hypot(a, b, c);
+  return Math.sqrt(a * a + b * b + c * c);
 }
 
 
@@ -181,7 +181,10 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 3  => 2000
  */
 function roundToPowerOfTen(num, pow) {
-  return Math.round((num / (10 ** pow)) * (10 ** pow));
+  if (pow === 0) {
+    return num;
+  }
+  return Math.round(num / 10 ** pow) * 10 ** pow;
 }
 
 /**
