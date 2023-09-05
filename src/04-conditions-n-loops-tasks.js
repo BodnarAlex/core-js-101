@@ -333,8 +333,16 @@ function isCreditCardNumber(ccn) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  let str = String(num);
+  while (str.length !== 1) {
+    let sum = 0;
+    for (let i = 0; i < str.length; i += 1) {
+      sum += Number(str[i]);
+    }
+    str = String(sum);
+  }
+  return str;
 }
 
 
@@ -359,8 +367,16 @@ function getDigitalRoot(/* num */) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  const newArr = ['()', '{}', '[]', '<>'];
+  let newStr = str;
+  const incl = (element) => newStr.includes(element);
+  while (newArr.some(incl)) {
+    for (let i = 0; i < newArr.length; i += 1) {
+      newStr = newStr.replaceAll(newArr[i], '');
+    }
+  }
+  return (newStr === '');
 }
 
 
@@ -401,8 +417,20 @@ function toNaryString(/* num, n */) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(pathes) {
+  let res = '';
+  for (let i = 0; i < pathes[0].length; i += 1) {
+    res = pathes[0][i];
+    for (let j = 0; j < pathes.length; j += 1) {
+      if (res !== pathes[j][i]) {
+        console.log('not');
+        res = pathes[0].slice(0, i);
+        const lasts = res.lastIndexOf('/') + 1;
+        return res.slice(0, lasts);
+      }
+    }
+  }
+  return '';
 }
 
 
