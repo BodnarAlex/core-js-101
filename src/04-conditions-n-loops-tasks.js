@@ -423,7 +423,6 @@ function getCommonDirectoryPath(pathes) {
     res = pathes[0][i];
     for (let j = 0; j < pathes.length; j += 1) {
       if (res !== pathes[j][i]) {
-        console.log('not');
         res = pathes[0].slice(0, i);
         const lasts = res.lastIndexOf('/') + 1;
         return res.slice(0, lasts);
